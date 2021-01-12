@@ -22,14 +22,18 @@ public class RabbitConsumer {
         Address address = new Address(IP_ADDRESS, PORT);
         ConnectionFactory connectionFactory = new ConnectionFactory();
         connectionFactory.setUsername("root");
-        connectionFactory.setPassword("root");
+        connectionFactory.setPassword("root123");
+        //创建连接
         Connection connection = connectionFactory.newConnection(Collections.singletonList(address));
+        //创建信道
         Channel channel = connection.createChannel();
+        //设置客户端最多接受未被ack的消息个数
         channel.basicQos(64);
         Consumer consumer = new DefaultConsumer(channel) {
 
             @Override
-            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+            public void handleDelivery(String consumerTag, Envelope envelope,
+                                       AMQP.BasicProperties properties, byte[] body) throws IOException {
                 System.out.println("recv message: " + new String(body));
                 try {
                     TimeUnit.SECONDS.sleep(1);
@@ -39,7 +43,8 @@ public class RabbitConsumer {
                 channel.basicAck(envelope.getDeliveryTag(), false);
             }
         };
-        channel.basicConsume(QUEUE_NAME,consumer);
+        channel.basicConsume(QUEUE_NAME, consumer);
+        //等待回调函数执行完毕后，关闭资源
         TimeUnit.SECONDS.sleep(5);
         channel.close();
         connection.close();
