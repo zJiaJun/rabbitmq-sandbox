@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="APP_NAME">rabbitmq-sandbox</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout header="${java:runtime} - ${java:vm} - ${java:os}"
+                    pattern="%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{%5p} %clr{${sys:APP_NAME}}{magenta}  %clr{${sys:PID}}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %X %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m %clr{:}{faint} %n%throwable"/>
+        </Console>
+        <!--<RollingRandomAccessFile name="RollingFile_Appender" fileName="${sys:LOG_PARENT_FOLDER}/${sys:APP_NAME}.log"-->
+                                 <!--filePattern="${sys:LOG_PARENT_FOLDER}/$${date:yyyy-MM-dd}/${sys:APP_NAME}-%d{yyyy-MM-dd}-%i.log">-->
+            <!--<PatternLayout-->
+                    <!--pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${sys:APP_NAME} ${sys:PID} -&#45;&#45; [%t] %-40.40c{1.} : %m : %X%n%throwable"/>-->
+            <!--<Policies>-->
+                <!--<TimeBasedTriggeringPolicy/>-->
+                <!--<SizeBasedTriggeringPolicy size="${sys:LOG_ROLLING_SIZE}"/>-->
+            <!--</Policies>-->
+        <!--</RollingRandomAccessFile>-->
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="Console"/>
+            <!--<AppenderRef ref="RollingFile_Appender"/>-->
+        </Root>
+    </Loggers>
+</Configuration>

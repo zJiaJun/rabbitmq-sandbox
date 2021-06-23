@@ -23,7 +23,7 @@ public class RabbitProducer {
         connectionFactory.setHost(IP_ADDRESS);
         connectionFactory.setPort(PORT);
         connectionFactory.setUsername("root");
-        connectionFactory.setPassword("root123");
+        connectionFactory.setPassword("root");
         //创建连接
         Connection connection = connectionFactory.newConnection();
         //创建信道

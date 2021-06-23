@@ -22,7 +22,7 @@ public class RabbitConsumer {
         Address address = new Address(IP_ADDRESS, PORT);
         ConnectionFactory connectionFactory = new ConnectionFactory();
         connectionFactory.setUsername("root");
-        connectionFactory.setPassword("root123");
+        connectionFactory.setPassword("root");
         //创建连接
         Connection connection = connectionFactory.newConnection(Collections.singletonList(address));
         //创建信道
